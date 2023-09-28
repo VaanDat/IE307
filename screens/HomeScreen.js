@@ -11,15 +11,26 @@ const HomeScreen = () => {
         <View style={styles.headerContent}>
           <View style={styles.buttonsLeft}>
             <TouchableOpacity style={styles.signInButton}>
+            <Image
+            source={require('./../assets/sign-in.png')}
+            style={styles.Icon}
+          />
               <Text style={styles.button}>Sign In</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.inboxButton}>
+            <Image
+            source={require('./../assets/inbox.png')}
+            style={styles.Icon}
+          />
               <Text style={styles.button}>Inbox</Text>
             </TouchableOpacity>
           </View>
           <TouchableOpacity style={styles.profileButton}>
 
-             <Text style={styles.button}>Profile</Text>
+          <Image
+            source={require('./../assets/profile.png')}
+            style={styles.Icon}
+          />
           </TouchableOpacity>
         </View>
       </View>
@@ -142,6 +153,8 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 25,
     fontWeight: 'bold',
+    marginBottom: 8, // Add margin at the bottom of the text
+    marginTop: 70,
   },
   headerContent: {
     flexDirection: 'row',
@@ -154,18 +167,27 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   signInButton: {
-    marginRight: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: 8, // Add margin to the right of Sign In button
+  },
+  Icon:{
+    width: 30,
+    height: 30,
+    marginRight: 5,
   },
   inboxButton: {
-    marginRight: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 18, // Add margin to the left of Inbox button
   },
   profileButton: {},
   imageList: {
-    marginTop: 16,
+    marginTop: 8,
   },
   imageContainer: {
     position: 'relative', 
-    marginBottom: 5,
+    marginBottom: 4,
   },
   imageCover: {
     position: 'relative', 
