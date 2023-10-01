@@ -18,8 +18,8 @@ Based on Starbucks app
 Clone this repository :
 
 ```
-git clone https://github.com/stevenpersia/tinder-react-native.git
-cd tinder-react-native
+git clone https:
+cd 
 ```
 
 Install packages :
