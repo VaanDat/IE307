@@ -1,13 +1,83 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
-const GiftScreen = () => {
+const CardsScreen = () => {
   return (
-    <View>
-      <Text>Gift Screen</Text>
-      {/* Thêm nội dung cho trang Gift ở đây */}
+    <View style={styles.container}>
+      {/* Phần tiêu đề */}
+      <View style={styles.header}>
+        <Text style={styles.headerText}>Welcome to Starbucks eGift</Text>
+        <Text style={styles.smallText}>
+          Send a digital Starbucks Card to your loved ones with our eGift feature.
+        </Text>
+      
+      </View>
+      <Image
+        source={require('./../assets/starbucks-gift.png')}
+        style={styles.centerImage}
+      />
+    
+      {/* Nút "Join now" */}
+      <View style={styles. eGiftButtonContainer}>
+        <TouchableOpacity style={styles. eGiftButton}>
+          <Text style={styles.buttonText}>Start sending eGift</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
 
-export default GiftScreen;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+    backgroundColor: '#1B3931',
+    fontFamily: 'System',
+    fontSize: 16,
+  },
+  header: {
+    marginBottom: 16,
+  },
+  headerText: {
+    fontSize: 23,
+    fontWeight: 'bold',
+    marginBottom: 8,
+    marginTop: 90,
+    color: 'white',
+    textAlign: 'center',
+  },
+
+  smallText: {
+    fontSize: 14.5,
+    color: '#90A19C',
+    marginTop: 50,
+    marginLeft: 8,
+    marginRight: 8,
+    textAlign: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  eGiftButtonContainer: {
+    position: 'absolute',
+    bottom: 20,
+    alignSelf: 'center',
+  },
+  eGiftButton: {
+    backgroundColor: '#01874D',
+    paddingVertical: 12,
+    paddingHorizontal: 124,
+    borderRadius: 30,
+
+  },
+  centerImage: {
+    width: 400, 
+    height: 250, 
+    alignSelf: 'center',
+    marginTop: 60, 
+  },
+  
+});
+
+export default CardsScreen;

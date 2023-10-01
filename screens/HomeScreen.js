@@ -1,11 +1,9 @@
 import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
-
 const HomeScreen = () => {
   return (
     <View style={styles.container}>
-      {/* Phần tiêu đề */}
       <View style={styles.header}>
         <Text style={styles.headerText}>It's a great day for coffee ☕</Text>
         <View style={styles.headerContent}>
@@ -37,7 +35,7 @@ const HomeScreen = () => {
 
 
 
-      {/* Phần nội dung tin tức */}
+  
       <ScrollView
         style={styles.imageList}
         showsVerticalScrollIndicator={false}
@@ -153,7 +151,7 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 25,
     fontWeight: 'bold',
-    marginBottom: 8, // Add margin at the bottom of the text
+    marginBottom: 8,
     marginTop: 70,
   },
   headerContent: {
@@ -169,7 +167,7 @@ const styles = StyleSheet.create({
   signInButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginRight: 8, // Add margin to the right of Sign In button
+    marginRight: 8,
   },
   Icon:{
     width: 30,
@@ -179,7 +177,7 @@ const styles = StyleSheet.create({
   inboxButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 18, // Add margin to the left of Inbox button
+    marginLeft: 18,
   },
   profileButton: {},
   imageList: {
@@ -210,6 +208,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     padding: 10,
     borderRadius: 20,
+    paddingHorizontal: 20,
   },
   button:{
     fontWeight: 'bold',
@@ -228,9 +227,9 @@ const styles = StyleSheet.create({
     right: 20,
   },
   joinNowButton: {
-    backgroundColor: '#006847', // Màu nút
-    paddingVertical: 20,
-    paddingHorizontal: 30,
+    backgroundColor: '#05A762',
+    paddingVertical: 22,
+    paddingHorizontal: 32,
     borderRadius: 30,
   },
 
