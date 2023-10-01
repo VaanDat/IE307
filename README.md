@@ -18,7 +18,7 @@ Based on Starbucks app
 Clone this repository :
 
 ```
-git clone https:
+git clone https://github.com/VaanDat/IE307.git
 cd 
 ```
 
