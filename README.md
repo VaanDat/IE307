@@ -13,13 +13,28 @@ Based on Starbucks app
 
 
 
-## 🛠 Deployment
+### Running the project
 
-Before you try to deploy run
+Clone this repository :
 
+```
+git clone https://github.com/VaanDat/IE307.git
+cd 
+```
 
+Install packages :
 
-To deploy this project run
+```
+npm install
+```
+
+When installation is complete, run with version of your choice :
+
+```bash
+react-native run-ios
+# or
+react-native run-android
+```
 
 
 
