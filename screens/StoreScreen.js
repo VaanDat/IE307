@@ -37,6 +37,18 @@ const StoreScreen = () => {
     }
   };
 
+  const handleMarkerPress = () => {
+    // Zoom in bằng cách thay đổi giá trị latitudeDelta và longitudeDelta
+    if (mapRef.current && location) {
+      mapRef.current.animateToRegion({
+        latitude: 10.870198532393648,
+        longitude: 106.80310774583567,
+        latitudeDelta: 0.01, // Điều chỉnh giá trị này để zoom in hoặc zoom out
+        longitudeDelta: 0.01, // Điều chỉnh giá trị này để zoom in hoặc zoom out
+      });
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Find a Store</Text>
@@ -68,13 +80,14 @@ const StoreScreen = () => {
             }}
             title="Target Location"
             description="This is your target address"
+            onPress={handleMarkerPress} // Gọi hàm handleMarkerPress khi click vào pin
           >
-            <Callout>
+            <Callout style={styles.calloutContainer}>
               <View>
-                <Text>Trường Đại học Công nghệ Thông tin</Text>
-                <Text>Khu phố 6 - Linh Trung</Text>
+                <Text style={styles.calloutText}>Trường Đại học Công nghệ Thông tin - ĐHQG TPHCM</Text>
+                <Text style={styles.calloutText}>Khu phố 6 - Linh Trung - Thủ Đức</Text>
                 <TouchableOpacity
-                  style={styles.Button}
+                  style={styles.directionButton}
                   onPress={() => {
                     // Tạo URL để chuyển hướng đến Google Maps với tọa độ cụ thể
                     const url = `https://www.google.com/maps/dir/?api=1&destination=10.870198532393648,106.80310774583567&travelmode=driving`;
@@ -85,7 +98,7 @@ const StoreScreen = () => {
                     );
                   }}
                 >
-                  <Text style={styles.button}>Direction</Text>
+                  <Text style={styles.directionButtonText}>Direction</Text>
                 </TouchableOpacity>
               </View>
             </Callout>
@@ -129,10 +142,18 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
   },
-  button: {
+  directionButton: {
+    backgroundColor: 'white',
+    paddingVertical: 3, 
+    paddingHorizontal: 5,
+    borderRadius: 30,
+    borderWidth: 2,
+    borderColor: 'black',
+    alignItems: 'center',
+  },
+  directionButtonText: {
     color: 'black',
     fontWeight: 'bold',
-    
   },
   backToLocationButton: {
     position: 'absolute',
@@ -146,7 +167,22 @@ const styles = StyleSheet.create({
   location:{
     width: 20,
     height: 20,
- 
+  },
+  calloutContainer: {
+    position: 'absolute',
+    bottom: '100%',
+    left: '50%',
+    marginLeft: -160, // Điều chỉnh giá trị này để canh chỉnh vị trí của Callout
+    width: 300, // Điều chỉnh độ rộng của Callout
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  calloutText: {
+    marginBottom: 5,
+    alignItems: 'center',
   },
 });
 

@@ -164,15 +164,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 8,
   },
-  signInButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginRight: 8,
-  },
   Icon:{
     width: 30,
     height: 30,
     marginRight: 5,
+  },
+  signInButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: 8,
   },
   inboxButton: {
     flexDirection: 'row',
