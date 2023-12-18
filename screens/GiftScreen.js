@@ -13,7 +13,7 @@ const CardsScreen = () => {
       
       </View>
       <Image
-        source={require('./../assets/starbucks-gift.png')}
+        source={require('./../assets/starbucks-gift.jpg')}
         style={styles.centerImage}
       />
     
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: '#1B3931',
+    backgroundColor: '#183D36',
     fontFamily: 'System',
     fontSize: 16,
   },
@@ -72,8 +72,8 @@ const styles = StyleSheet.create({
 
   },
   centerImage: {
-    width: 400, 
-    height: 250, 
+    width: 420, 
+    height: 400, 
     alignSelf: 'center',
     marginTop: 60, 
   },

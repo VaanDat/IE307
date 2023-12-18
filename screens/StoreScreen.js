@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { View, Image, TouchableOpacity, Text, StyleSheet, Linking } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import * as Location from 'expo-location';
-import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 const StoreScreen = () => {
   const [location, setLocation] = useState(null);
@@ -10,7 +10,6 @@ const StoreScreen = () => {
   const mapRef = useRef(null);
 
   useEffect(() => {
-    // Hàm này sẽ được gọi khi màn hình được tải
 
     // Yêu cầu quyền truy cập vị trí
     (async () => {
@@ -72,7 +71,6 @@ const StoreScreen = () => {
             description="You are here!"
           />
           
-          {/* Thêm đánh dấu đến địa chỉ cụ thể */}
           <Marker
             coordinate={{
               latitude: 10.870198532393648,
@@ -80,7 +78,7 @@ const StoreScreen = () => {
             }}
             title="Target Location"
             description="This is your target address"
-            onPress={handleMarkerPress} // Gọi hàm handleMarkerPress khi click vào pin
+            onPress={handleMarkerPress}
           >
             <Callout style={styles.calloutContainer}>
               <View>
@@ -172,8 +170,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: '100%',
     left: '50%',
-    marginLeft: -160, // Điều chỉnh giá trị này để canh chỉnh vị trí của Callout
-    width: 300, // Điều chỉnh độ rộng của Callout
+    marginLeft: -160,
+    width: 300,
     backgroundColor: 'white',
     borderRadius: 10,
     padding: 10,

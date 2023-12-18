@@ -1,20 +1,37 @@
 import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Image, StyleSheet } from 'react-native';
-
+import { useNavigation } from '@react-navigation/native';
 const HomeScreen = () => {
+  const navigation = useNavigation();
+
+  const navigateToDetail = () => {
+    navigation.navigate('Detail');
+  };
+  const navigateToSignIn = () => {
+    navigation.navigate('SignIn');
+  };
+  const navigateToJoinNow = () => {
+    navigation.navigate('JoinNow');
+  };
+  const navigateToProFile = () => {
+    navigation.navigate('Profile');
+  };
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>It's a great day for coffee ☕</Text>
         <View style={styles.headerContent}>
           <View style={styles.buttonsLeft}>
-            <TouchableOpacity style={styles.signInButton}>
+              <TouchableOpacity
+            style={styles.signInButton}
+            onPress={navigateToSignIn}
+          >
             <Image
-            source={require('./../assets/sign-in.png')}
-            style={styles.Icon}
-          />
-              <Text style={styles.button}>Sign In</Text>
-            </TouchableOpacity>
+              source={require('./../assets/sign-in.png')}
+              style={styles.Icon}
+            />
+            <Text style={styles.button}>Sign In</Text>
+          </TouchableOpacity>
             <TouchableOpacity style={styles.inboxButton}>
             <Image
             source={require('./../assets/inbox.png')}
@@ -23,7 +40,10 @@ const HomeScreen = () => {
               <Text style={styles.button}>Inbox</Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.profileButton}>
+          <TouchableOpacity 
+            style={styles.profileButton}
+            onPress={navigateToProFile}
+          >
 
           <Image
             source={require('./../assets/profile.png')}
@@ -43,18 +63,21 @@ const HomeScreen = () => {
       
       <View style={styles.imageCover}>
           <Image
-            source={require('./../assets/starbucks-0.jpg')}
+            source={require('./../assets/starbucks-0.png')}
             style={styles.Image}
           />
         </View>
 
         <View style={styles.imageContainer}>
           <Image
-            source={require('./../assets/starbucks-1.jpg')}
+            source={require('./../assets/starbucks-1.png')}
             style={styles.smallImage}
           />
 
-          <TouchableOpacity style={styles.imageButton}>
+          <TouchableOpacity
+            style={styles.imageButton}
+            onPress={navigateToDetail}
+          >
             <Text style={styles.button}>Find out more</Text>
           </TouchableOpacity>
         </View>
@@ -65,17 +88,23 @@ const HomeScreen = () => {
             style={styles.smallImage}
           />
 
-          <TouchableOpacity style={styles.imageButton}>
-            <Text style={styles.button}>Find out more</Text>
-          </TouchableOpacity>
+          <TouchableOpacity
+          style={styles.imageButton}
+          onPress={navigateToDetail}
+        >
+          <Text style={styles.button}>Find out more</Text>
+        </TouchableOpacity>
         </View>
         <View style={styles.imageContainer}>
           <Image
-            source={require('./../assets/starbucks-3.jpg')}
+            source={require('./../assets/starbucks-3.png')}
             style={styles.smallImage}
           />
 
-          <TouchableOpacity style={styles.imageButton}>
+          <TouchableOpacity
+            style={styles.imageButton}
+            onPress={navigateToDetail}
+          >
             <Text style={styles.button}>Find out more</Text>
           </TouchableOpacity>
         </View>
@@ -85,7 +114,10 @@ const HomeScreen = () => {
             style={styles.smallImage}
           />
 
-          <TouchableOpacity style={styles.imageButton}>
+          <TouchableOpacity
+            style={styles.imageButton}
+            onPress={navigateToDetail}
+          >
             <Text style={styles.button}>Find out more</Text>
           </TouchableOpacity>
         </View>
@@ -96,7 +128,10 @@ const HomeScreen = () => {
             style={styles.smallImage}
           />
 
-          <TouchableOpacity style={styles.imageButton}>
+          <TouchableOpacity
+            style={styles.imageButton}
+            onPress={navigateToDetail}
+          >
             <Text style={styles.button}>Find out more</Text>
           </TouchableOpacity>
         </View>
@@ -106,7 +141,10 @@ const HomeScreen = () => {
             style={styles.smallImage}
           />
 
-          <TouchableOpacity style={styles.imageButton}>
+          <TouchableOpacity
+            style={styles.imageButton}
+            onPress={navigateToDetail}
+          >
             <Text style={styles.button}>Find out more</Text>
           </TouchableOpacity>
         </View>
@@ -116,7 +154,10 @@ const HomeScreen = () => {
             style={styles.smallImage}
           />
 
-          <TouchableOpacity style={styles.imageButton}>
+          <TouchableOpacity
+            style={styles.imageButton}
+            onPress={navigateToDetail}
+          >
             <Text style={styles.button}>Find out more</Text>
           </TouchableOpacity>
         </View>
@@ -125,9 +166,12 @@ const HomeScreen = () => {
         </View>
       </ScrollView>
       <View style={styles.joinNowButtonContainer}>
-        <TouchableOpacity style={styles.joinNowButton}>
-          <Text style={styles.buttonText}>Join now</Text>
-        </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.joinNowButton}
+        onPress={navigateToJoinNow}
+      >
+        <Text style={styles.buttonText}>Join now</Text>
+      </TouchableOpacity>
       </View>
     </View>
   );
