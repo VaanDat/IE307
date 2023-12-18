@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
   },
   orderContainer: {
-    backgroundColor: '#F7F7F7', // Màu xám
+    backgroundColor: '#F7F7F7',
     padding: 16,
     borderRadius: 8,
     marginTop: 20,

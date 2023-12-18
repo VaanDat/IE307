@@ -1,10 +1,16 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
-
+import { useNavigation } from '@react-navigation/native';
 const CardsScreen = () => {
+  const navigation = useNavigation();
+  const navigateToJoinNow = () => {
+    navigation.navigate('JoinNow');
+  };
+  const navigateToSignIn = () => {
+    navigation.navigate('SignIn');
+  };
   return (
     <View style={styles.container}>
-      {/* Phần tiêu đề */}
       <View style={styles.header}>
         <Text style={styles.headerText}>Welcome to</Text>
         <Text style={[styles.headerText, styles.starbucksText]}>Starbucks Cards</Text>
@@ -19,14 +25,12 @@ const CardsScreen = () => {
         source={require('./../assets/starbucks-card.png')}
         style={styles.centerImage}
       />
-      {/* Nút "Sign In" */}
-      <TouchableOpacity style={styles.signInButton}>
+      <TouchableOpacity style={styles.signInButton}onPress={navigateToSignIn}>
         <Text style={styles.signInButtonText}>Sign In</Text>
       </TouchableOpacity>
 
-      {/* Nút "Join now" */}
       <View style={styles.joinNowButtonContainer}>
-        <TouchableOpacity style={styles.joinNowButton}>
+        <TouchableOpacity style={styles.joinNowButton}onPress={navigateToJoinNow}>
           <Text style={styles.buttonText}>Join now</Text>
         </TouchableOpacity>
       </View>
