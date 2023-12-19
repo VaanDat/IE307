@@ -1,24 +1,23 @@
+// ./screens/ForgotPasswordScreen.js
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import BackButton from '../components/BackButton';
 
-const SignInScreen = () => {
+const ForgotPasswordScreen = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
-  const handleSignIn = () => {
+  const handleResetPassword = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+/;
     if (!emailRegex.test(email)) {
       Alert.alert('Invalid Email', 'Please enter a valid email address.');
-      return; // Ngăn chặn tiếp tục nếu email không hợp lệ
+      return;
     }
-    // Handle sign-in logic here
-  };
-
-  const navigateToForgotPassword = () => {
-    navigation.navigate('ForgotPassword');
+    // Handle password reset logic here
+    // You can send a password reset email or navigate to another screen
+    // based on your authentication flow
+    Alert.alert('Password Reset', 'An email with instructions has been sent to your email address.');
   };
 
   return (
@@ -26,7 +25,7 @@ const SignInScreen = () => {
       <View style={styles.backButtonContainer}>
         <BackButton />
       </View>
-      <Text style={styles.title}>Sign In</Text>
+      <Text style={styles.title}>Forgot Password</Text>
 
       <View style={styles.form}>
         <TextInput
@@ -36,18 +35,10 @@ const SignInScreen = () => {
           autoCapitalize="none"
           onChangeText={(text) => setEmail(text)}
         />
-        <TextInput
-          style={styles.input}
-          placeholder="Password"
-          secureTextEntry
-          onChangeText={(text) => setPassword(text)}
-        />
       </View>
-      <TouchableOpacity style={styles.forgotPasswordButton} onPress={navigateToForgotPassword}>
-        <Text style={styles.forgotPasswordButtonText}>Forgot Password?</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.signInButton} onPress={handleSignIn}>
-        <Text style={styles.signInButtonText}>Sign In</Text>
+
+      <TouchableOpacity style={styles.resetPasswordButton} onPress={handleResetPassword}>
+        <Text style={styles.resetPasswordButtonText}>Reset Password</Text>
       </TouchableOpacity>
     </View>
   );
@@ -75,13 +66,13 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     borderRadius: 8,
   },
-  signInButton: {
+  resetPasswordButton: {
     backgroundColor: '#05A762',
     paddingVertical: 12,
     borderRadius: 8,
     alignItems: 'center',
   },
-  signInButtonText: {
+  resetPasswordButtonText: {
     color: 'white',
     fontWeight: 'bold',
   },
@@ -91,15 +82,6 @@ const styles = StyleSheet.create({
     left: 20,
     zIndex: 1,
   },
-  forgotPasswordButton: {
-    marginBottom: 12,
-    alignItems: 'center',
-  },
-  forgotPasswordButtonText: {
-    color: '#3498db',
-    textDecorationLine: 'underline',
-  },
 });
 
-
-export default SignInScreen;
+export default ForgotPasswordScreen;

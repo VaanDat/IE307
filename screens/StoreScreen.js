@@ -24,7 +24,11 @@ const StoreScreen = () => {
       setLocation(location);
     })();
   }, []);
-
+  const handleDirectionPress = () => {
+    const url = `https://www.google.com/maps/dir/?api=1&destination=10.870198532393648,106.80310774583567&travelmode=driving`;
+  
+    Linking.openURL(url);
+  };
   const handleGoToCurrentLocation = () => {
     if (mapRef.current && location) {
       mapRef.current.animateToRegion({
@@ -86,15 +90,7 @@ const StoreScreen = () => {
                 <Text style={styles.calloutText}>Khu phố 6 - Linh Trung - Thủ Đức</Text>
                 <TouchableOpacity
                   style={styles.directionButton}
-                  onPress={() => {
-                    // Tạo URL để chuyển hướng đến Google Maps với tọa độ cụ thể
-                    const url = `https://www.google.com/maps/dir/?api=1&destination=10.870198532393648,106.80310774583567&travelmode=driving`;
-
-                    // Mở ứng dụng Google Maps
-                    Linking.openURL(url).catch(err =>
-                      console.error('Could not open URL', err)
-                    );
-                  }}
+                  onPress={handleDirectionPress}
                 >
                   <Text style={styles.directionButtonText}>Direction</Text>
                 </TouchableOpacity>

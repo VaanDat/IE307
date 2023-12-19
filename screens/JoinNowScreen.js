@@ -3,13 +3,11 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
+import BackButton from '../components/BackButton';
 
 const JoinNowScreen = () => {
   const navigation = useNavigation();
 
-  const navigateBack = () => {
-    navigation.goBack(); 
-  };
 
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -48,12 +46,7 @@ const JoinNowScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.backButtonContainer}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={navigateBack}
-        >
-          <Icon name="arrow-back" color="white" />
-        </TouchableOpacity>
+      <BackButton />
       </View>
       <View style={styles.formContainer}>
         <Text style={styles.title}>Join Now</Text>
@@ -87,20 +80,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  coverImage: {
-    height: 200,
-    resizeMode: 'cover',
-  },
   backButtonContainer: {
     position: 'absolute',
     top: 60,
     left: 20,
     zIndex: 1,
-  },
-  backButton: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    padding: 10,
-    borderRadius: 30,
   },
   formContainer: {
     flex: 1,

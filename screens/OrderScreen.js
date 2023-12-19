@@ -1,7 +1,14 @@
 import React from 'react';
 import { View, Text,  TouchableOpacity, Image, StyleSheet } from 'react-native';
-
+import { useNavigation } from '@react-navigation/native';
 const HomeScreen = () => {
+  const navigation = useNavigation();
+  const navigateToProFile = () => {
+    navigation.navigate('Profile');
+  };
+  const navigateToMenu = () => {
+    navigation.navigate('Menu')
+  }
   return (
     <View style={styles.container}>
       <View style={styles.headerContent}>
@@ -12,7 +19,7 @@ const HomeScreen = () => {
               style={styles.Icon}
             />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.profileButton}>
+          <TouchableOpacity style={styles.profileButton}onPress={navigateToProFile}>
             <Image
               source={require('./../assets/profile.png')}
               style={styles.Icon}
@@ -30,7 +37,7 @@ const HomeScreen = () => {
         <Text style={styles.orderDescription}>
           Order ahead and pick up your order
         </Text>
-        <TouchableOpacity style={styles.orderButton}>
+        <TouchableOpacity style={styles.orderButton}onPress={navigateToMenu}>
           <Text style={styles.orderButtonText}>ORDER NOW</Text>
         </TouchableOpacity>
         <View style={styles.circleImageContainer}>
