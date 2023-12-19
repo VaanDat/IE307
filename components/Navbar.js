@@ -12,7 +12,11 @@ import DetailScreen from '../screens/DetailScreen';
 import SignInScreen from '../screens/SignInScreen';
 import JoinNowScreen from '../screens/JoinNowScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-
+// import ProfileScreen from '../screens/user/UserProfile';
+import MenuScreen from '../screens/MenuScreen';
+import ProfileDetail from '../screens/user/ProfileDetail';
+import SetPassword from '../screens/user/SetPassword';
+import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
@@ -24,6 +28,9 @@ export function HomeStack() {
       <Stack.Screen name="SignIn" component={SignInScreen} />
       <Stack.Screen name="JoinNow" component={JoinNowScreen} />
       <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="ProfileDetail" component={ProfileDetail} />
+      <Stack.Screen name="SetPassword" component={SetPassword} />
+      <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
     </Stack.Navigator>
   );
 }
@@ -42,6 +49,8 @@ export function OrderStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="OrderStack" component={OrderScreen} />
+      <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="Menu" component={MenuScreen} />
     </Stack.Navigator>
   );
 }
