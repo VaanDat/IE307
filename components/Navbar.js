@@ -35,15 +35,7 @@ export function HomeStack() {
   );
 }
 
-export function CardsStack() {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="CardsStack" component={CardsScreen} />
-      <Stack.Screen name="SignIn" component={SignInScreen} />
-      <Stack.Screen name="JoinNow" component={JoinNowScreen} />
-    </Stack.Navigator>
-  );
-}
+
 
 export function OrderStack() {
   return (
@@ -99,7 +91,6 @@ export function Navbar() {
       })}
     >
       <Tab.Screen name="Home" component={HomeStack} />
-      <Tab.Screen name="Cards" component={CardsStack} />
       <Tab.Screen name="Order" component={OrderStack} />
       <Tab.Screen name="Gift" component={GiftStack} />
       <Tab.Screen name="Store" component={StoreStack} />

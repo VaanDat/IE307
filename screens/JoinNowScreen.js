@@ -1,52 +1,68 @@
 // ./screens/JoinNowScreen.js
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { Icon } from 'react-native-elements';
-import { useNavigation } from '@react-navigation/native';
-import BackButton from '../components/BackButton';
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+} from "react-native";
+import { Icon } from "react-native-elements";
+import { useNavigation } from "@react-navigation/native";
+import BackButton from "../components/BackButton";
+
+import { db, app, auth } from "../firebase";
+import { collection, addDoc } from "firebase/firestore";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 const JoinNowScreen = () => {
   const navigation = useNavigation();
 
-
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
 
   const handleSignUp = async () => {
-    // Kiểm tra định dạng email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+/;
-    if (!emailRegex.test(email)) {
-      Alert.alert('Invalid Email', 'Please enter a valid email address.');
-      return; // Ngăn chặn tiếp tục nếu email không hợp lệ
-    }
-  
     try {
-      const response = await fetch('http://172.16.1.18:3000/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ fullName, email, password }),
+      // Kiểm tra định dạng email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+/;
+      if (!emailRegex.test(email)) {
+        Alert.alert("Invalid Email", "Please enter a valid email address.");
+        return; // Ngăn chặn tiếp tục nếu email không hợp lệ
+      }
+
+      // Thực hiện việc setDoc bằng async/await
+      await addDoc(collection(db, "users"), {
+        fullName: fullName,
+        email: email,
+        phone: phone,
       });
 
-      if (response.ok) {
-        Alert.alert('Success', 'User registered successfully!');
-        // Chuyển hướng đến trang SignInScreen sau khi đăng ký thành công
-        navigation.navigate('SignIn');
-      } else {
-        Alert.alert('Error', 'Failed to register user. Please try again.');
-      }
+      // Thực hiện việc đăng ký người dùng bằng async/await
+      const userCredentials = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredentials.user;
+      console.log(user.email);
+      Alert.alert("Success", "User registered successfully!");
+      navigation.navigate("SignIn");
     } catch (error) {
-      console.error('Error:', error);
-      Alert.alert('Error', 'An unexpected error occurred. Please try again.');
+      console.error(error);
+      Alert.alert("Error", error.message);
     }
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.backButtonContainer}>
-      <BackButton />
+        <BackButton />
       </View>
       <View style={styles.formContainer}>
         <Text style={styles.title}>Join Now</Text>
@@ -62,6 +78,11 @@ const JoinNowScreen = () => {
           autoCapitalize="none"
           onChangeText={(text) => setEmail(text)}
         />
+        <TextInput
+        style={styles.input}
+        placeholder="Phone"
+        onChangeText={(text) => setPhone(text)}
+      />
         <TextInput
           style={styles.input}
           placeholder="Password"
@@ -81,41 +102,41 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   backButtonContainer: {
-    position: 'absolute',
+    position: "absolute",
     top: 60,
     left: 20,
     zIndex: 1,
   },
   formContainer: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
     padding: 16,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 16,
   },
   input: {
     height: 40,
-    borderColor: 'gray',
+    borderColor: "gray",
     borderWidth: 1,
     marginBottom: 12,
     paddingLeft: 10,
     borderRadius: 8,
   },
   signUpButton: {
-    backgroundColor: '#05A762',
+    backgroundColor: "#05A762",
     paddingVertical: 12,
     borderRadius: 8,
-    alignItems: 'center',
+    alignItems: "center",
   },
   signUpButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: "white",
+    fontWeight: "bold",
   },
 });
 

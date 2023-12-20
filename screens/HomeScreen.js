@@ -1,21 +1,30 @@
-import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React from "react";
+import {
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-const HomeScreen = () => {
+const HomeScreen = ({ route }) => {
+  const user = route.params || null;
+
   const navigation = useNavigation();
 
   const navigateToDetail = () => {
-    navigation.navigate('Detail');
+    navigation.navigate("Detail");
   };
   const navigateToSignIn = () => {
-    navigation.navigate('SignIn');
+    navigation.navigate("SignIn");
   };
   const navigateToJoinNow = () => {
-    navigation.navigate('JoinNow');
+    navigation.navigate("JoinNow");
   };
   const navigateToProFile = () => {
-    navigation.navigate('Profile');
+    navigation.navigate("Profile", user);
   };
   return (
     <View style={styles.container}>
@@ -23,55 +32,43 @@ const HomeScreen = () => {
         <Text style={styles.headerText}>It's a great day for coffee ☕</Text>
         <View style={styles.headerContent}>
           <View style={styles.buttonsLeft}>
-              <TouchableOpacity
-            style={styles.signInButton}
-            onPress={navigateToSignIn}
-          >
-            <Image
-              source={require('./../assets/sign-in.png')}
-              style={styles.Icon}
-            />
-            <Text style={styles.button}>Sign In</Text>
-          </TouchableOpacity>
-            <TouchableOpacity style={styles.inboxButton}>
-            <Image
-            source={require('./../assets/inbox.png')}
-            style={styles.Icon}
-          />
-              <Text style={styles.button}>Inbox</Text>
+          {!user ? (
+            // Hiển thị TouchableOpacity khi isLogged là true
+            <TouchableOpacity
+              style={styles.signInButton}
+              onPress={navigateToSignIn}
+            >
+              <Image
+                source={require("./../assets/sign-in.png")}
+                style={styles.Icon}
+              />
+              <Text style={styles.button}>Sign In</Text>
             </TouchableOpacity>
+          ) : null}
           </View>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.profileButton}
             onPress={navigateToProFile}
           >
-
-          <Image
-            source={require('./../assets/profile.png')}
-            style={styles.Icon}
-          />
+            <Image
+              source={require("./../assets/profile.png")}
+              style={styles.Icon}
+            />
           </TouchableOpacity>
         </View>
       </View>
 
-
-
-  
-      <ScrollView
-        style={styles.imageList}
-        showsVerticalScrollIndicator={false}
-      >
-      
-      <View style={styles.imageCover}>
+      <ScrollView style={styles.imageList} showsVerticalScrollIndicator={false}>
+        <View style={styles.imageCover}>
           <Image
-            source={require('./../assets/starbucks-0.png')}
+            source={require("./../assets/starbucks-0.png")}
             style={styles.Image}
           />
         </View>
 
         <View style={styles.imageContainer}>
           <Image
-            source={require('./../assets/starbucks-1.png')}
+            source={require("./../assets/starbucks-1.png")}
             style={styles.smallImage}
           />
 
@@ -85,20 +82,7 @@ const HomeScreen = () => {
 
         <View style={styles.imageContainer}>
           <Image
-            source={require('./../assets/starbucks-2.jpg')}
-            style={styles.smallImage}
-          />
-
-          <TouchableOpacity
-          style={styles.imageButton}
-          onPress={navigateToDetail}
-        >
-          <Text style={styles.button}>Find out more</Text>
-        </TouchableOpacity>
-        </View>
-        <View style={styles.imageContainer}>
-          <Image
-            source={require('./../assets/starbucks-3.png')}
+            source={require("./../assets/starbucks-2.jpg")}
             style={styles.smallImage}
           />
 
@@ -111,7 +95,20 @@ const HomeScreen = () => {
         </View>
         <View style={styles.imageContainer}>
           <Image
-            source={require('./../assets/starbucks-4.jpg')}
+            source={require("./../assets/starbucks-3.png")}
+            style={styles.smallImage}
+          />
+
+          <TouchableOpacity
+            style={styles.imageButton}
+            onPress={navigateToDetail}
+          >
+            <Text style={styles.button}>Find out more</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.imageContainer}>
+          <Image
+            source={require("./../assets/starbucks-4.jpg")}
             style={styles.smallImage}
           />
 
@@ -125,7 +122,7 @@ const HomeScreen = () => {
 
         <View style={styles.imageContainer}>
           <Image
-            source={require('./../assets/starbucks-5.jpg')}
+            source={require("./../assets/starbucks-5.jpg")}
             style={styles.smallImage}
           />
 
@@ -138,7 +135,7 @@ const HomeScreen = () => {
         </View>
         <View style={styles.imageContainer}>
           <Image
-            source={require('./../assets/starbucks-6.jpg')}
+            source={require("./../assets/starbucks-6.jpg")}
             style={styles.smallImage}
           />
 
@@ -151,7 +148,7 @@ const HomeScreen = () => {
         </View>
         <View style={styles.imageContainer}>
           <Image
-            source={require('./../assets/starbucks-7.jpg')}
+            source={require("./../assets/starbucks-7.jpg")}
             style={styles.smallImage}
           />
 
@@ -167,27 +164,28 @@ const HomeScreen = () => {
         </View>
       </ScrollView>
       <View style={styles.joinNowButtonContainer}>
-      <TouchableOpacity
+      {!user? (  <TouchableOpacity
         style={styles.joinNowButton}
         onPress={navigateToJoinNow}
       >
         <Text style={styles.buttonText}>Join now</Text>
-      </TouchableOpacity>
+      </TouchableOpacity>): null}
+      
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-    text: {
-      fontFamily: 'System', 
-      fontSize: 16,
-    },
+  text: {
+    fontFamily: "System",
+    fontSize: 16,
+  },
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: 'white',
-    fontFamily: 'System', 
+    backgroundColor: "white",
+    fontFamily: "System",
     fontSize: 16,
   },
   header: {
@@ -195,33 +193,33 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: 25,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 8,
     marginTop: 70,
   },
   headerContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   buttonsLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginTop: 8,
   },
-  Icon:{
+  Icon: {
     width: 30,
     height: 30,
     marginRight: 5,
   },
   signInButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginRight: 8,
   },
   inboxButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginLeft: 18,
   },
   profileButton: {},
@@ -229,11 +227,11 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   imageContainer: {
-    position: 'relative', 
+    position: "relative",
     marginBottom: 4,
   },
   imageCover: {
-    position: 'relative', 
+    position: "relative",
     marginBottom: 15,
   },
   smallImage: {
@@ -242,42 +240,41 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
 
-  Image:{
+  Image: {
     width: 382,
     height: 225,
   },
   imageButton: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 20,
     left: 20,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     padding: 10,
     borderRadius: 20,
     paddingHorizontal: 20,
   },
-  button:{
-    fontWeight: 'bold',
+  button: {
+    fontWeight: "bold",
   },
   buttonText: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: "white",
+    fontWeight: "bold",
   },
   endOfList: {
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 16,
   },
   joinNowButtonContainer: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 20,
     right: 20,
   },
   joinNowButton: {
-    backgroundColor: '#05A762',
+    backgroundColor: "#05A762",
     paddingVertical: 22,
     paddingHorizontal: 32,
     borderRadius: 30,
   },
-
 });
 
 export default HomeScreen;
